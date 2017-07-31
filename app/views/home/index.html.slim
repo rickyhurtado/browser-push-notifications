@@ -1,1 +1,45 @@
 h1 Browser Push Notifications
+
+javascript:
+  var userID = #{user_id};
+  var eventSourceUrl = '/push_notifications/0/user/' + userID;
+  var eventSource, jsonData, notificationID;
+
+  startPushNotifications = function(url, userID){
+    eventSource = new EventSource(url);
+    console.log('Event stream started');
+
+    eventSource.addEventListener('push-notifications', function(e){
+      jsonData = JSON.parse(e.data);
+
+      if (jsonData.length > 0){
+        pushNotification(jsonData[0]);
+
+        if (notificationID !== jsonData[0].id){
+          eventSource.close();
+          console.log('Event stream closed');
+
+          notificationID = jsonData[0].id;
+          eventSourceUrl = '/push_notifications/' + notificationID + '/user/' + userID;
+
+          setTimeout(function(){
+            startPushNotifications(eventSourceUrl);
+          }, 3000);
+        };
+      };
+    });
+  };
+
+  pushNotification = function(data){
+    if (Notification.permission !== 'granted')
+      Notification.requestPermission();
+    else {
+      var notification = new Notification(data.title, { body: data.body });
+
+      notification.onclick = function(){
+        window.open('http://facebook.com/Ironcoder/');
+      };
+    };
+  };
+
+  startPushNotifications(eventSourceUrl, userID);
