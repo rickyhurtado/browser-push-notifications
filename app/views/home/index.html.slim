@@ -15,7 +15,7 @@ javascript:
       if (jsonData.length > 0){
         pushNotification(jsonData[0]);
 
-        if (notificationID !== jsonData[0].id){
+        if (notificationID && notificationID !== jsonData[0].id){
           eventSource.close();
           console.log('Event stream closed');
 
@@ -23,7 +23,7 @@ javascript:
           eventSourceUrl = '/push_notifications/' + notificationID + '/user/' + userID;
 
           setTimeout(function(){
-            startPushNotifications(eventSourceUrl);
+            startPushNotifications(eventSourceUrl, userID);
           }, 3000);
         };
       };
