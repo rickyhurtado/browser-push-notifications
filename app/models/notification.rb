@@ -1,3 +1,3 @@
-class Notification < ActiveRecord::Base
+class Notification < ApplicationRecord
   scope :undelivered, -> (id, user_id) { where('id > ? AND user_id=? AND delivered=?', id, user_id, false) }
 end

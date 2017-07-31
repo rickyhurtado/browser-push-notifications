@@ -1,5 +1,5 @@
 # Browser Push Notifications
-Browser push notifications demo using Rails 4.2.7.2 and Ruby 2.3.4
+Browser push notifications demo using SSE, Rails 5.1.2, and Ruby 2.3.4
 
 ## Create Notifications
 ```sql
