@@ -28,7 +28,7 @@ class PushNotificationsController < ApplicationController
     end
 
     def notifications
-      Notification.undelivered params[:id], params[:user_id]
+      Notification.undelivered params[:user_id]
     end
 
     def multiple_notifications_message
