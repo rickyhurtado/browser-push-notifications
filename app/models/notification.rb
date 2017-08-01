@@ -1,3 +1,3 @@
 class Notification < ApplicationRecord
-  scope :undelivered, -> (id, user_id) { where('id > ? AND user_id=? AND delivered=?', id, user_id, false) }
+  scope :undelivered, -> (user_id) { where('user_id=? AND delivered=?', user_id, false) }
 end
