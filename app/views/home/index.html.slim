@@ -1,10 +1,10 @@
 h1 Browser Push Notifications
 
-javascript:
-  document.addEventListener('DOMContentLoaded', function(){
-    PushNotifications.init({
-      eventSourceUrl: '/push_notifications?user_id=#{user_id}',
-      notificationLink: 'https://instagram.com/Ironcoder',
-      noActivityTimeMinutes: 0.1
+- content_for :javascript_includes_after do
+  javascript:
+    document.addEventListener('DOMContentLoaded', function(){
+      PushNotifications.init({
+        eventSourceUrl: '/push_notifications?user_id=#{user_id}',
+        noActivityTimeMinutes: 0.1
+      });
     });
-  });

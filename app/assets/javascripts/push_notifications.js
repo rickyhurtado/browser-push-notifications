@@ -15,7 +15,6 @@ PushNotifications = {
 
   initEventSource: function(options){
     this.eventSourceUrl = options.eventSourceUrl;
-    this.notificationLink = options.notificationLink;
     this.noActivityTime = options.noActivityTimeMinutes;
     this.notificationId = 0;
     this.noActivityTO = 0;
@@ -64,7 +63,7 @@ PushNotifications = {
       var notification = new Notification(data.title, { body: data.body });
 
       notification.onclick = function(){
-        window.open(self.notificationLink);
+        window.open(data.link);
       };
     };
   },

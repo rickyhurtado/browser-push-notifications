@@ -32,7 +32,11 @@ class PushNotificationsController < ApplicationController
     end
 
     def multiple_notifications_message
-      [{ title: 'Push Notifications', body: "You have #{notifications.count} unread notifications."}]
+      [{
+        title: 'Push Notifications',
+        body: "You have #{notifications.count} unread notifications.",
+        link: 'https://instagram.com/Ironcoder'
+      }]
     end
 
     def mark_notifications_delivered
